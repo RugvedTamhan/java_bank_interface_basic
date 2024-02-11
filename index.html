@@ -4,37 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Account Management</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function displayAccountDetails() {
-            // Replace '3RtGh' with the actual account number
-            alert("Your account number is 3RtGh");
-        }
+        $(document).ready(function() {
+            // Function to display account details
+            function displayAccountDetails() {
+                alert("Your account number is 3RtGh");
+            }
 
-        function displayBalance(balance) {
-            alert("You have " + balance + " Rs in your account.");
-        }
+            // Function to display balance
+            function displayBalance() {
+                $.ajax({
+                    url: 'http://example.com/getBalance', // Replace with your server-side endpoint
+                    type: 'GET',
+                    success: function(data) {
+                        alert("You have " + data.balance + " Rs in your account.");
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Failed to fetch balance: " + error);
+                    }
+                });
+            }
 
-        function depositMoney() {
-            var amount = parseInt(prompt("Enter the amount to be deposited:"));
-            // Call your Java depositMoney method here
-            // Example: You can make an AJAX request to a server-side Java application
-        }
+            // Function to deposit money
+            function depositMoney() {
+                var amount = parseInt(prompt("Enter the amount to be deposited:"));
+                $.ajax({
+                    url: 'http://example.com/depositMoney', // Replace with your server-side endpoint
+                    type: 'POST',
+                    data: { amount: amount },
+                    success: function(data) {
+                        alert("Deposited Successfully. Your current balance is " + data.balance + " Rs.");
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Failed to deposit money: " + error);
+                    }
+                });
+            }
 
-        function withdrawMoney() {
-            var amount = parseInt(prompt("Enter the amount to be withdrawn:"));
-            // Call your Java withdrawMoney method here
-            // Example: You can make an AJAX request to a server-side Java application
-        }
+            // Function to withdraw money
+            function withdrawMoney() {
+                var amount = parseInt(prompt("Enter the amount to be withdrawn:"));
+                $.ajax({
+                    url: 'http://example.com/withdrawMoney', // Replace with your server-side endpoint
+                    type: 'POST',
+                    data: { amount: amount },
+                    success: function(data) {
+                        alert("Withdrawn Successfully. Your current balance is " + data.balance + " Rs.");
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Failed to withdraw money: " + error);
+                    }
+                });
+            }
+
+            // Attach click event handlers to buttons
+            $("#btnAccountDetails").click(displayAccountDetails);
+            $("#btnBalance").click(displayBalance);
+            $("#btnDeposit").click(depositMoney);
+            $("#btnWithdraw").click(withdrawMoney);
+        });
     </script>
 </head>
 <body>
     <h1>Welcome to our bank's online inquiry system</h1>
     <p>We can show you your account details or bank balance.</p>
 
-    <button onclick="displayAccountDetails()">Get Account Details</button>
-    <button onclick="displayBalance(10000)">Get Balance</button>
-    <button onclick="depositMoney()">Deposit Money</button>
-    <button onclick="withdrawMoney()">Withdraw Money</button>
-</body>
-</html>
-
+    <!-- Buttons to trigger JavaScript functions -->
+    <button id="btnAccountDetails">Get Account Details</button>
+    <button id="btnBalance">Get Balance</button>
+    <button id="btnDeposit">Deposit Money</button>
+  
