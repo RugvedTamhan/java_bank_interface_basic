@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Management</title>
+    <script>
+        function displayAccountDetails() {
+            // Replace '3RtGh' with the actual account number
+            alert("Your account number is 3RtGh");
+        }
+
+        function displayBalance(balance) {
+            alert("You have " + balance + " Rs in your account.");
+        }
+
+        function depositMoney() {
+            var amount = parseInt(prompt("Enter the amount to be deposited:"));
+            // Call your Java depositMoney method here
+            // Example: You can make an AJAX request to a server-side Java application
+        }
+
+        function withdrawMoney() {
+            var amount = parseInt(prompt("Enter the amount to be withdrawn:"));
+            // Call your Java withdrawMoney method here
+            // Example: You can make an AJAX request to a server-side Java application
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to our bank's online inquiry system</h1>
+    <p>We can show you your account details or bank balance.</p>
+
+    <button onclick="displayAccountDetails()">Get Account Details</button>
+    <button onclick="displayBalance(10000)">Get Balance</button>
+    <button onclick="depositMoney()">Deposit Money</button>
+    <button onclick="withdrawMoney()">Withdraw Money</button>
+</body>
+</html>
 
